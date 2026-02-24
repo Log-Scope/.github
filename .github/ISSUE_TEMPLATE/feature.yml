@@ -1,0 +1,77 @@
+name: "✨ Feature"
+description: "LogScope 기능 추가/변경"
+title: "[FEAT] "
+labels: ["type:feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **이슈 제목 규칙:** `[FEAT] 한 줄 요약`
+        - 예: `[FEAT] Loki 로그 수집 파이프라인 추가`
+        - 예: `[FEAT] 로그 파서 규칙 추가 (NGINX access)`
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 기능 영역
+      description: 어디에 영향을 주는 기능인가요?
+      options:
+        - Ingestion (수집/에이전트)
+        - Parsing/ETL (파싱/정규화)
+        - Storage (저장/인덱싱)
+        - Search/API (검색/조회 API)
+        - UI/Console (대시보드/콘솔)
+        - Alerting (알림/룰)
+        - Ontology/Schema (온톨로지/스키마)
+        - Auth/Org (권한/테넌시)
+        - Infra/Deploy (배포/인프라)
+    validations:
+      required: true
+
+  - type: textarea
+    id: desc
+    attributes:
+      label: 배경 / 설명
+      description: 무엇을, 왜 하는지 한두 줄로
+      placeholder: 예) 장애 분석 시 특정 서비스의 요청 흐름을 빠르게 추적하기 위해 traceId 필드 정규화가 필요하다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: 범위 (Scope)
+      description: 포함/제외를 짧게 적어주세요
+      placeholder: |
+        포함:
+        - NGINX access log 파서 추가
+        - 필드: timestamp, method, path, status, latencyMs, traceId
+
+        제외:
+        - 대시보드 신규 위젯 추가 (별도 이슈)
+    validations:
+      required: true
+
+  - type: textarea
+    id: ac
+    attributes:
+      label: 완료 기준 (AC)
+      description: 체크박스 1~3개만 (명확하게)
+      placeholder: |
+        - [ ] 샘플 로그 N건 기준 파싱 성공률 99% 이상
+        - [ ] API/CLI로 검색 시 원하는 필드로 필터링 가능
+        - [ ] PR 본문에 `Closes #이슈번호` 연결
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 참고 / 링크
+      description: 문서, 대시보드, 샘플 로그 등
+      placeholder: |
+        - 관련 문서:
+        - 샘플 로그/캡처:
+        - 레퍼런스 링크:
+    validations:
+      required: false
