@@ -1,0 +1,122 @@
+name: "🐛 Bug"
+description: "LogScope 버그 제보/수정"
+title: "[BUG] "
+labels: ["type:bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **이슈 제목 규칙:** `[BUG] 한 줄 요약`
+        - 예: `[BUG] 로그 검색 결과가 시간순 정렬되지 않음`
+        - 예: `[BUG] 알림 룰 평가가 특정 테넌트에서 누락됨`
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 영향 영역
+      description: 어디에서 문제가 발생했나요?
+      options:
+        - Ingestion (수집/에이전트)
+        - Parsing/ETL (파싱/정규화)
+        - Storage (저장/인덱싱)
+        - Search/API (검색/조회 API)
+        - UI/Console (대시보드/콘솔)
+        - Alerting (알림/룰)
+        - Ontology/Schema (온톨로지/스키마)
+        - Auth/Org (권한/테넌시)
+        - Infra/Deploy (배포/인프라)
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: 현상
+      description: 어떤 문제가 발생했나요? (한두 줄)
+      placeholder: 예) 동일한 쿼리를 실행해도 검색 결과 건수가 간헐적으로 달라진다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: 영향도
+      description: 사용자/운영에 어떤 영향이 있나요?
+      placeholder: |
+        예)
+        - 사용자: 최근 15분 로그가 누락되어 장애 분석 불가
+        - 운영: 알림 오탐/미탐 증가
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 심각도 (Severity)
+      options:
+        - S1 (서비스 중단/데이터 유실)
+        - S2 (주요 기능 장애/오탐·미탐 심각)
+        - S3 (부분 장애/우회 가능)
+        - S4 (경미/UX)
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: 재현 방법
+      description: 가능하면 구체적으로 적어주세요 (없으면 “미재현”)
+      placeholder: |
+        1) ...
+        2) ...
+        3) ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대 결과
+      placeholder: 예) 시간 범위 내 로그가 누락 없이 조회되고, 최신순/시간순 정렬이 일관되게 적용되어야 한다.
+    validations:
+      required: false
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 실제 결과 / 로그
+      description: 에러 메시지, 스택트레이스, 스크린샷 링크 등
+      placeholder: |
+        - 에러/로그:
+        - 스크린샷:
+        - 관련 쿼리/요청:
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: 버전/환경 (선택)
+      description: 배포/브랜치/태그, 클러스터/OS 등
+      placeholder: 예) v0.8.1 / main / k8s dev / macOS 15
+    validations:
+      required: false
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: 임시 우회 (선택)
+      placeholder: 예) 쿼리 time range를 5분 넓히면 일부 누락이 완화됨
+    validations:
+      required: false
+
+  - type: textarea
+    id: links
+    attributes:
+      label: 관련 이슈/PR/문서 (선택)
+      placeholder: |
+        - 관련 이슈:
+        - 관련 PR:
+        - 문서:
+    validations:
+      required: false
